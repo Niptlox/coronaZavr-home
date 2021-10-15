@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} Последние статьи {% endblock %}
+
+{% block content %}
+
+
+<div class="container">
+    <div class="title-statistic">Статистика по COVID-19 <br><span></span>в {{country_title}}</div>
+  <div class="row">
+    <div class="col">
+      <img class="img-fluid" src="{% static 'images/statistic.png' %}">
+    </div>
+    <div class="col">
+
+            <div class="stat-text">
+                <div class="value-s" style="color:#15803D">{{recovered}}</div>
+                <div class="value-text-label" style="color:#14532D">Человек выздоровело</div>
+
+                <div class="stat-text-margin">
+                    <div class="value-s" style="color:#991B1B">{{cases}}</div>
+                    <div class="value-text-label" style="color:#991B1B">Выявлено случаев</div>
+                    <div class="stat-text-margin">
+                        <div class="value-s" style="color:#C2410C">{{todayCases}}</div>
+                        <div class="value-text-label" style="color:#7C2D12">Выявлено случаев<br>за последние сутки</div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="stat-text">
+                <div class="value-s bg" style="color:#0284C7">{{tests}}</div>
+                <div class="value-text-label" style="color:#0C4A6E">Проведено тестов</div>
+                <div class="stat-text-margin">
+                    <div class="value-s" style="color:#525252">{{deaths}}</div>
+                    <div class="value-text-label" style="color:#000000">Человек умерло</div>
+                </div>
+            </div>
+
+
+      {% block content-choice %} {% endblock %}
+    </div>
+
+  </div>
+</div>
+
+
+
+<canvas id="myChart" width="100%" height="50"></canvas>
+<script>
+var ctx = document.getElementById('myChart');
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        responsive: true,
+        labels: {{dates_list|safe}},
+        datasets: [
+        {
+            label: 'выздоровело',
+            data: {{ recovered_list }},
+            borderColor: '#84CC16',
+            radius:0,
+            borderWidth: 3,
+            yAxisID: 'y2',
+        },
+        {
+            label: 'выявлено',
+            data: {{ cases_list }},
+            borderColor: '#991B1B',
+            borderWidth: 3,
+            radius:0,
+            yAxisID: 'y2',
+
+        },
+        {
+            label: 'умерло',
+            data: {{ deaths_list }},
+            borderColor: '#18181B',
+            radius:0,
+
+            borderWidth: 3,
+            yAxisID: 'y2',
+        },
+
+        {
+            label: 'вакцинаций COVID-19',
+            data: {{ tests_list }},
+            borderColor: '#1D4ED8',
+            radius:0,
+            borderWidth: 3,
+            yAxisID: 'y3',
+        },
+
+        ]
+    },
+
+    options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Количество COVID-19 в {{country_title}} за всё время пандемии'
+          },
+        },
+        interaction: {
+          intersect: false,
+        },
+        scales: {
+            y2: {
+                            min: 0,
+
+                type: 'linear',
+                offset: true,
+                position: 'left',
+                stack: 'demo',
+                stackWeight: 1,
+                grid: {
+                  borderColor: 'rgba(53, 53, 53, 1)'
+                  },
+           y3: {
+                min: 0,
+                type: 'linear',
+                offset: true,
+                position: 'left',
+                stack: 'demo',
+                stackWeight: 1,
+                grid: {
+                  borderColor: '#1D4ED8'
+                  }
+                  },
+
+            y: {
+                            min: 0,
+
+                type: 'linear',
+                offset: true,
+                position: 'left',
+                stack: 'demo',
+                stackWeight: 1,
+                grid: {
+                  borderColor: 'rgba(206, 22, 22, 1)'
+                  },
+            },
+            x: {
+                stacked: true,
+                text: 'Дата',
+                title: {
+                  display: true
+                }
+            },
+            grid: {
+                drawOnChartArea: false, // only want the grid lines for one axis to show up
+            },
+
+
+            },
+
+
+
+
+
+    }
+},
+
+
+});
+
+
+
+
+</script>
+{% endblock %}

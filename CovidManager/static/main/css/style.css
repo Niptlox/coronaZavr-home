@@ -1,0 +1,70 @@
+.publish-meta {
+    color: #b6b7ba;
+    font-weight: 600;
+    margin-top: -2px;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.article-comment {
+    margin-bottom: 20px;
+}
+
+.article-comment-text {
+    margin-left: 10px;
+}
+
+.article-comment-author {
+    margin-bottom: 5px;
+}
+
+.header-link {
+    font-weight:600 ;
+    font-size: 21px;
+}
+
+.stat-text-margin {
+    margin-top: 28px;
+    margin-left: 110px;
+}
+
+
+.stat-text {
+    margin-left: 0px;
+}
+
+.value-s {
+    font-family: Verdana;
+    font-weight: Bold;
+    font-size: 38px;
+    opacity: 1;
+    text-align: left;
+    margin-bottom: 0px;
+    padding: 0px;
+    margin-top: 0px;
+    line-height: 1;
+}
+
+.value-text-label {
+    font-family: Verdana;
+    font-weight: Regular;
+    font-size: 24px;
+    opacity: 1;
+    text-align: left;
+    margin-left: 45px;
+    margin-top: 0px;
+    padding: 0px;
+    margin-bottom: 0px;
+    line-height: 1;
+
+}
+
+.title-statistic {
+    font-family: Verdana;
+    font-weight: Bold;
+    font-size: 38px;
+}
+
+.form-choice {
+    margin-top: 30px;
+}

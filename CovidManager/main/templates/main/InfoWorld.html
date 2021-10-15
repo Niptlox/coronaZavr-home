@@ -1,0 +1,24 @@
+{% extends 'main/Statistic.html' %}
+
+{% load static %}
+
+{% block title %} COVID-19 в мире {% endblock %}
+
+{% block content-choice %}
+<div class="container-fluid form-choice">
+    <form method="POST" class="" action="{% url 'main:world' %}">
+        {% csrf_token %}
+        <div class="form-row align-items-bottom justify-content-end">
+            <div class="col-sm-8 my-1">
+                <select class="form-control" id="country" name="country">
+                    {% for ctr_name in countries_list %}
+                      <option {% if ctr_name == country %} selected {% endif %}>{{ctr_name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Уточнить страну</button>
+
+        </div>
+    </form>
+</div>
+{% endblock %}
